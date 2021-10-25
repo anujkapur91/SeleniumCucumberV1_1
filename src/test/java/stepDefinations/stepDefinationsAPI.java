@@ -78,6 +78,19 @@ public class stepDefinationsAPI
 
 	}
 
+	@When("User sets the header for following values")
+	public void user_sets_the_header_for_following_values(io.cucumber.datatable.DataTable dataTable) {
+		List <Map<String,String>> list = dataTable.asMaps(String.class,String.class);
+		for(int i=0; i< list.size(); i++ )
+		{
+			String headerKey, headerValue;
+			headerKey = list.get(i).get("HeaderParam");
+			headerValue = list.get(i).get("Value");
+
+			request.header(headerKey,headerValue );
+
+		}
+	}
 
 	@Then("User creates the body of request using parameters  {string}")
 	public void user_creates_the_body_of_request_using_parameters(String strBody) {

@@ -5,7 +5,10 @@ Feature: Validating GET/POST Requests
   @POST
   Scenario Outline: API Scenario POST
     Given User sets the base URL "<baseURL>"  for API request
-    When User sets the "Content-Type" in header as "application/json"
+#    When User sets the "Content-Type" in header as "application/json"
+    When User sets the header for following values
+      | HeaderParam  | Value            |
+      | Content-Type | application/json |
     Then User creates the body of request using parameters  "<bodyContentTagAndValue>"
     Then User submits the 'POST' request with end point as - "<endPoint>"
     Then User validates the status code as 201
@@ -14,14 +17,13 @@ Feature: Validating GET/POST Requests
 
     @QA
     Examples:
-      | baseURL           | endPoint   | headerParam_Value              | bodyContentTagAndValue | key_value  |
-      | https://reqres.in | /api/users | Content Type: Application/json | name:Anuj2;job:AQA2    | name:Anuj2 |
+      | baseURL           | endPoint   |   bodyContentTagAndValue | key_value  |
+      | https://reqres.in | /api/users |  name:Anuj2;job:AQA2    | name:Anuj2 |
 
     @PreProd
     Examples:
-      | baseURL           | endPoint   | headerParam_Value              | bodyContentTagAndValue | key_value  |
-      | https://reqres.in | /api/users | Content Type: Application/json | name:Anuj2;job:AQA2    | name:Anuj2 |
-
+      | baseURL           | endPoint   | bodyContentTagAndValue | key_value  |
+      | https://reqres.in | /api/users | name:Anuj2;job:AQA2    | name:Anuj2 |
 
   @GET @SMOKE
   Scenario Outline: API Scenario GET
