@@ -81,21 +81,27 @@ public class stepDefinationsAPI
 	@When("User sets the header for following values")
 	public void user_sets_the_header_for_following_values(io.cucumber.datatable.DataTable dataTable) {
 		List <Map<String,String>> list = dataTable.asMaps(String.class,String.class);
-		for(int i=0; i< list.size(); i++ )
+
+		for(Map<String,String> m : list)
 		{
-			String headerKey, headerValue;
-			headerKey = list.get(i).get("HeaderParam");
-			headerValue = list.get(i).get("Value");
-
-			request.header(headerKey,headerValue );
-
+			request.header(m.get("HeaderParam"),m.get("Value"));
 		}
+
+//		for(int i=0; i< list.size(); i++ )
+//		{
+//			String headerKey, headerValue;
+//			headerKey = list.get(i).get("HeaderParam");
+//			headerValue = list.get(i).get("Value");
+//
+//			request.header(headerKey,headerValue );
+//
+//		}
 	}
 
 	@Then("User creates the body of request using parameters  {string}")
 	public void user_creates_the_body_of_request_using_parameters(String strBody) {
 		//Crete the body of Post request to be submitted
-		JSONObject jsonObj = new JSONObject();
+		JSONObject  jsonObj = new JSONObject();
 
 		String [] bodyKeyValues  = strBody.split(";");
 
@@ -198,16 +204,21 @@ public class stepDefinationsAPI
 	@Then("User Validates the following header in response")
 	public void user_validates_the_following_header_in_response(io.cucumber.datatable.DataTable dataTable) {
 
-		List<Map<String, String>> list = dataTable.asMaps(String.class,String.class);
+		List<Map<String, String>> list = dataTable.asMaps(String.class, String.class);
 
-		for(int i =0;i<list.size(); i++ )
+		for (Map<String,String> m : list)
 		{
-			Assert.assertEquals(list.get(i).get("Value"),response.header(list.get(i).get("HeaderTag")));
+			Assert.assertEquals(m.get("Value"), response.header(m.get("HeaderTag")));
 		}
+	}
+//		for(int i =0;i<list.size(); i++ )
+//		{
+//			Assert.assertEquals(list.get(i).get("Value"),response.header(list.get(i).get("HeaderTag")));
+//		}
 
 
 	}
 
 
 
-}
+

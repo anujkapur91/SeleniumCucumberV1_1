@@ -1,7 +1,5 @@
 Feature: Validating GET/POST Requests
 
-
-
   @POST
   Scenario Outline: API Scenario POST
     Given User sets the base URL "<baseURL>"  for API request
@@ -17,13 +15,13 @@ Feature: Validating GET/POST Requests
 
     @QA
     Examples:
-      | baseURL           | endPoint   |   bodyContentTagAndValue | key_value  |
-      | https://reqres.in | /api/users |  name:Anuj2;job:AQA2    | name:Anuj2 |
+      | baseURL           | endPoint   | bodyContentTagAndValue | key_value  |
+      | https://reqres.in | /api/users | name:Anuj3;job:AQA3    | name:Anuj3 |
 
     @PreProd
     Examples:
       | baseURL           | endPoint   | bodyContentTagAndValue | key_value  |
-      | https://reqres.in | /api/users | name:Anuj2;job:AQA2    | name:Anuj2 |
+      | https://reqres.in | /api/users | name:Anuj4;job:AQA4    | name:Anuj4 |
 
   @GET @SMOKE
   Scenario Outline: API Scenario GET
