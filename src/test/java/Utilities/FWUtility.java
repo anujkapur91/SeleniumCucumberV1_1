@@ -1,4 +1,4 @@
-package UILibrary;
+package Utilities;
 
 import org.apache.commons.io.FileUtils;
 //import org.openqa.selenium.*;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.function.Function;
 
-public  class Utility
+public  class FWUtility
 {
 
     public static WebElement waitWithFluentWait(WebDriver driver, By locator , int waitTimeOut, int frequencyInSeconds)
@@ -69,7 +69,7 @@ public  class Utility
         return target.getAbsolutePath();
     }
 
-    public static String takeScreenshot(WebDriver driver, WebElement element, String ScreenShotName, String screenShotBasePath, ScreenShotType screenShotType ) throws IOException
+    public static String takeScreenshotAt(WebDriver driver, WebElement element, String ScreenShotName, String screenShotBasePath, ScreenShotType screenShotType ) throws IOException
     {
 
         File source;
@@ -100,16 +100,22 @@ public  class Utility
         return target.getAbsolutePath();
     }
 
+    public static byte[] takeScreenshotByte(WebDriver driver ) throws IOException
+    {
+
+        TakesScreenshot scrn = (TakesScreenshot) driver;
+        return scrn.getScreenshotAs(OutputType.BYTES);
+    }
     private static void highlightElement(WebDriver driver , WebElement element)
     {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].style.border='3px solid red'",element);
     }
 
-    public enum ScreenShotType
-    {
-        FULLPAGE, ONLY_ELEMENT
-    }
+//    public enum ScreenShotType
+//    {
+//        FULLPAGE, ONLY_ELEMENT
+//    }
 
 }
 

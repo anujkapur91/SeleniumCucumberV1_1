@@ -1,17 +1,14 @@
 package SeleniumOrJavaTest;
 
-import UILibrary.Utility;
+import Utilities.ScreenShotType;
+import Utilities.FWUtility;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class Test {
 
@@ -36,7 +33,7 @@ public class Test {
 //        Thread.sleep(10000);
 //        driver.switchTo().alert().dismiss();
         WebElement x = driver.findElement(By.xpath("//button[text()='Click for JS Prompt']"));
-        Utility.takeScreenshot(driver, x,"Alert", Utility.ScreenShotType.FULLPAGE );
+        FWUtility.takeScreenshot(driver, x,"Alert", ScreenShotType.FULLPAGE );
 
         driver.findElement(By.xpath("//button[text()='Click for JS Prompt']")).click();
 //        Thread.sleep(3000);
@@ -48,7 +45,7 @@ public class Test {
 //        Thread.sleep(3000);
         driver.switchTo().alert().accept();
 //        Thread.sleep(3000);
-        Utility.takeScreenshot(driver, driver.findElement(By.id("result")),"Result", "C:\\Users\\Anuj kapur\\Desktop", Utility.ScreenShotType.ONLY_ELEMENT );
+        FWUtility.takeScreenshotAt(driver, driver.findElement(By.id("result")),"Result", "C:\\Users\\Anuj kapur\\Desktop", ScreenShotType.ONLY_ELEMENT );
 
         System.out.println("$$$$$$$$$$  " + driver.findElement(By.id("result")).getText() + " $$$$$$$$$$$$$$$");
         driver.quit();

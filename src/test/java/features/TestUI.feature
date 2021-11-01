@@ -1,21 +1,18 @@
-Feature: Login to Amazon two
-#
-#  Scenario Outline: Login With Correct Credentials 1
-#    Given User Opens Amazon India
-#    When User Navigates to Login Link
-#    Then User logins with Username  and Password
-#      | Username              | Password  |
-#      | anujkapur91@gmail.com | Rockye08$ |
-#      | anujkapur19@gmail.com | Rockye08$ |
-#    Then User types "<Product>" "<Model>" name and searches and selects the first listing
-#    Then User goes to cart and removes the product
-#    Then User Logs Out
-#    Then User closes Browser
-#
-#    Examples: 
-#      | Browser | Product | Model  |
-#      | FireFox | OnePlus | 7T     |
-#      | Chrome  | OnePlus | 7t pro |
+Feature: Test ToolsSQA Page with POM
+
+  Scenario Outline: Login in and navigate
+    Given User Opens Browser and Navigates to DemoQA
+    Then User validates the Page Title of DemoQA Page
+    Then User clicks on Elements link on DemoQA Page
+    Then User validates the Page Title of Elements Page
+    Then Use clicks on ToolSQA Banner
+    Then User validates the Page Title of ToolSQAPage
+    Then User closes browser
+
+    Examples:
+      | Browser | Product | Model |
+      |         |         |       |
+
 
 #@POST @SMOKE
 #Scenario Outline: API Scenario POST

@@ -1,11 +1,14 @@
 package Runner;
 
+import io.cucumber.java.AfterStep;
+import io.cucumber.java.Scenario;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
-
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 
 @RunWith(Cucumber.class)
