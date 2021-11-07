@@ -7,7 +7,7 @@ Feature: Test ToolsSQA Page with POM
     Then User validates the Page Title of Elements Page
     Then Use clicks on ToolSQA Banner
     Then User validates the Page Title of ToolSQAPage
-    Then User closes browser
+#    Then User closes browser
 
     Examples:
       | Browser | Product | Model |

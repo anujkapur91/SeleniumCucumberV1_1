@@ -13,15 +13,15 @@ import org.openqa.selenium.TakesScreenshot;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "C:\\Users\\Anuj kapur\\Eclipse2021\\SeleniumCucumberV1_1\\src\\test\\java\\features"
+		features = "C:\\Users\\Anuj kapur\\Eclipse2021\\SeleniumCucumberV1_1\\src\\test\\java\\features"//\\TestUI.feature"
 		,glue= {"stepDefinations"}
 		//,tags = ("@QA and @SMOKE")
 //		,tags = ("@Gmaps")
-		,dryRun = false ,plugin = {"pretty","html:target/cucumber-reports/cucumber-pretty.html"}
+		,dryRun = false ,plugin = {"pretty","json:target/cucumber-reports/cucumber.json","html:target/cucumber-reports/cucumber-pretty.html","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 		,monochrome = true
 		)
-//\RestAssuredFeatureFile.feature
-
+//\TestAPI.feature
+//,"json:target/cucumber.json"
 public class RunCucumberTest 
 {
 

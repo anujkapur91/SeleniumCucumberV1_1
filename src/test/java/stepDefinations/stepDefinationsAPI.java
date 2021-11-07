@@ -1,6 +1,4 @@
 package stepDefinations;
-
-
 import org.junit.Assert;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,7 +9,6 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
-
 import java.util.List;
 import java.util.Map;
 
@@ -22,15 +19,15 @@ public class stepDefinationsAPI
 	Response response;
 
 	@Given("User sets the base URL {string}  for API request")
-	public void user_sets_the_base_url_for_api_request(String baseURL) {
+	public void user_sets_the_base_url_for_api_request(String baseURL)
+	{
 		RestAssured.baseURI = baseURL;
 		request = RestAssured.given();
-
-
 	}
 
 	@When("User submits the GET request with end point as {string}")
-	public void user_submits_the_get_request_with_end_point_as(String endPoint) {
+	public void user_submits_the_get_request_with_end_point_as(String endPoint)
+	{
 		response = request.request(Method.GET, endPoint);
 	}
 
@@ -42,7 +39,8 @@ public class stepDefinationsAPI
 	}
 
 	@Then("User validatd the body of response for following {string} pair")
-	public void user_validatd_the_body_of_response_for_following_pair(String key_values) {
+	public void user_validatd_the_body_of_response_for_following_pair(String key_values)
+	{
 		JsonPath jp = response.jsonPath();
 		String[] keyValue;
 		String[] keyValues = key_values.split(",");
@@ -72,14 +70,16 @@ public class stepDefinationsAPI
 	}
 
 	@When("User sets the {string} in header as {string}")
-	public void user_sets_the_in_header_as(String Key, String Value) {
+	public void user_sets_the_in_header_as(String Key, String Value)
+	{
 
 		request.header(Key,Value);
 
 	}
 
 	@When("User sets the header for following values")
-	public void user_sets_the_header_for_following_values(io.cucumber.datatable.DataTable dataTable) {
+	public void user_sets_the_header_for_following_values(io.cucumber.datatable.DataTable dataTable)
+	{
 		List <Map<String,String>> list = dataTable.asMaps(String.class,String.class);
 
 		for(Map<String,String> m : list)
@@ -87,19 +87,11 @@ public class stepDefinationsAPI
 			request.header(m.get("HeaderParam"),m.get("Value"));
 		}
 
-//		for(int i=0; i< list.size(); i++ )
-//		{
-//			String headerKey, headerValue;
-//			headerKey = list.get(i).get("HeaderParam");
-//			headerValue = list.get(i).get("Value");
-//
-//			request.header(headerKey,headerValue );
-//
-//		}
 	}
 
 	@Then("User creates the body of request using parameters  {string}")
-	public void user_creates_the_body_of_request_using_parameters(String strBody) {
+	public void user_creates_the_body_of_request_using_parameters(String strBody)
+	{
 		//Crete the body of Post request to be submitted
 		JSONObject  jsonObj = new JSONObject();
 
@@ -118,7 +110,8 @@ public class stepDefinationsAPI
 	}
 
 	@Then("User submits the {string} request with end point as - {string}")
-	public void u_ser_submits_the_post_request_with_end_point_as(String requestType, String endPoint) {
+	public void u_ser_submits_the_post_request_with_end_point_as(String requestType, String endPoint)
+	{
 
 		switch(requestType.toUpperCase() ){
 			case "POST":
@@ -134,7 +127,8 @@ public class stepDefinationsAPI
 	}
 
 	@Then("User validates the body of response for {string} Key Value pair")
-	public void user_validates_the_body_of_response_for_key_value_pair(String key_values) {
+	public void user_validates_the_body_of_response_for_key_value_pair(String key_values)
+	{
 
 		System.out.println(response.getBody().prettyPrint());
 
@@ -164,14 +158,16 @@ public class stepDefinationsAPI
 	}
 
 	@Then("User Prints the response")
-	public void user_prints_the_response() {
+	public void user_prints_the_response()
+	{
 
 		System.out.println(response.getBody().prettyPrint());
 
 	}
 
 	@Then("User Validates header of response for {string}")
-	public void user_validates_header_of_response_for(String headerTag_Value) {
+	public void user_validates_header_of_response_for(String headerTag_Value)
+	{
 
 
 		JsonPath jp = response.jsonPath();
@@ -192,17 +188,14 @@ public class stepDefinationsAPI
 			{
 				Assert.assertEquals( keyValue[1],response.header(keyValue[0]));
 			}
-
-
-
-
 		}
 
 
 	}
 
 	@Then("User Validates the following header in response")
-	public void user_validates_the_following_header_in_response(io.cucumber.datatable.DataTable dataTable) {
+	public void user_validates_the_following_header_in_response(io.cucumber.datatable.DataTable dataTable)
+	{
 
 		List<Map<String, String>> list = dataTable.asMaps(String.class, String.class);
 
@@ -211,11 +204,6 @@ public class stepDefinationsAPI
 			Assert.assertEquals(m.get("Value"), response.header(m.get("HeaderTag")));
 		}
 	}
-//		for(int i =0;i<list.size(); i++ )
-//		{
-//			Assert.assertEquals(list.get(i).get("Value"),response.header(list.get(i).get("HeaderTag")));
-//		}
-
 
 	}
 

@@ -1,15 +1,15 @@
 package pages;
 
+import UILibrary.UIAction;
 import Utilities.BaseClass;
-import Utilities.LocatorRepository;
 import org.openqa.selenium.By;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 
 public class pgElements extends BaseClass
 {
-    public pgElements() throws IOException {
+    public pgElements()
+    {
 //        FileInputStream fis = new FileInputStream("C:\\Users\\Anuj kapur\\Eclipse2021\\SeleniumCucumberV1_1\\Locator.properties");
 //        prop.load(fis);
     }
@@ -18,12 +18,14 @@ public class pgElements extends BaseClass
 
     public String validatePageTitle()
     {
-        System.out.println("ELEMENTS - "+driver.getTitle());
+
         return driver.getTitle();
     }
 
     public pgToolSQA clickOnHomePageLink() throws IOException {
-        driver.findElement(By.xpath("(//div[@id='app']//img)[1]")).click();
+
+//        driver.findElement(By.xpath("(//div[@id='app']//img)[1]")).click();
+        UIAction.clickElement("HomePageBanner");
         return new pgToolSQA();
 
     }
