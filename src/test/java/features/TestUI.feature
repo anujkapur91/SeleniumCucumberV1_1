@@ -13,6 +13,15 @@ Feature: Test ToolsSQA Page with POM
       | Browser | Product | Model |
       |         |         |       |
 
+  Scenario: Login in and navigate 2
+    Given User Opens Browser and Navigates to DemoQA
+    Then User validates the Page Title of DemoQA Page
+
+  Scenario: Login in and navigate 3
+    Given User Opens Browser and Navigates to DemoQA
+    Then User validates the Page Title of DemoQA Page
+
+
 
 #@POST @SMOKE
 #Scenario Outline: API Scenario POST
