@@ -3,9 +3,8 @@ Feature: Validating GET/POST Requests
   @POST
   Scenario Outline: API Scenario POST
     Given User sets the base URL "<baseURL>"  for API request
-#    When User sets the "Content-Type" in header as "application/json"
     When User sets the header for following values
-      | HeaderParam  | Value            |
+      | HeaderTag    | Value            |
       | Content-Type | application/json |
     Then User creates the body of request using parameters  "<bodyContentTagAndValue>"
     Then User submits the 'POST' request with end point as - "<endPoint>"
@@ -31,10 +30,10 @@ Feature: Validating GET/POST Requests
     And User validatd the body of response for following "<key_value>" pair
     And User Prints the response
 
-    Examples: 
-      | baseURL                                   | endPoint   | key_value                           |
-      | https://demoqa.com/utilities/weather/city | /Hyderabad | City:Hyderabad,Humidity:.*Percent.* |
-      | https://demoqa.com/utilities/weather/city | /Pune      | City:Pune                           |
+    Examples:
+      | baseURL                                   | endPoint   | key_value                         |
+      | https://demoqa.com/utilities/weather/city | /Hyderabad | City:Hyderabad,Humidity:*Percent* |
+      | https://demoqa.com/utilities/weather/city | /Pune      | City:Pune                         |
 
   @GET @Gmaps
   Scenario Outline: Google Maps Get Request

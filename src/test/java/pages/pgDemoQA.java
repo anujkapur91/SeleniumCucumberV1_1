@@ -1,9 +1,7 @@
 package pages;
 
-import UILibrary.UIAction;
+import UILibrary.Ram;
 import Utilities.BaseClass;
-import Utilities.Locator;
-import org.openqa.selenium.By;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -21,17 +19,16 @@ public class pgDemoQA extends BaseClass
     //Actions or Page Object Methods
     public String validatePageTitle()
     {
-//        System.out.println("DEMO QA - "+ driver.getTitle());
         return driver.getTitle();
-
     }
 
     //LogIn
-    public pgElements clickOnElements() throws IOException {
+    public pgElements clickOnElements() throws Throwable {
 //        driver.findElement(By.xpath("(//div[@class='card-up'])[1]")).click();
 
 //        driver.findElement(locator.getLocator("Elements")).click();
-        UIAction.clickElement("Elements");
+        Ram.clicksOn("Elements");
+        Ram.checksBrokenLinkOnPage();
         return new pgElements();
 
     }

@@ -1,10 +1,7 @@
 package pages;
 
-import UILibrary.UIAction;
+import UILibrary.Ram;
 import Utilities.BaseClass;
-import org.openqa.selenium.By;
-
-import java.io.IOException;
 
 public class pgElements extends BaseClass
 {
@@ -22,10 +19,10 @@ public class pgElements extends BaseClass
         return driver.getTitle();
     }
 
-    public pgToolSQA clickOnHomePageLink() throws IOException {
+    public pgToolSQA clickOnHomePageLink() throws Throwable {
 
 //        driver.findElement(By.xpath("(//div[@id='app']//img)[1]")).click();
-        UIAction.clickElement("HomePageBanner");
+        Ram.clicksOn("HomePageBanner");
         return new pgToolSQA();
 
     }

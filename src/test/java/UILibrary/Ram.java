@@ -9,11 +9,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 
-public class UIAction extends BaseClass {
+public class Ram extends BaseClass {
     Scenario scenario;
 
     public static void selectDropDown(WebDriver driver, WebElement element, String selection) {
@@ -95,15 +99,18 @@ public class UIAction extends BaseClass {
 
     }
 
-    public static void clickElement(String locatorName) throws IOException
+    public static void clicksOn(String locatorName) throws Throwable
     {
 
-        driver.findElement(locator.getLocator(locatorName)).click();
+            driver.findElement(locator.getLocator(locatorName)).click();
+
+
 
 
     }
 
-    private static int getColumnIndex(String tableLocatorName, String columnaName) throws IOException {
+    private static int getColumnIndex(String tableLocatorName, String columnaName) throws IOException
+    {
         int strColumnIndex = 0;
         List<WebElement> columns =  driver.findElements(locator.getTableColumns(tableLocatorName));
         int cols = columns.size();
@@ -119,5 +126,38 @@ public class UIAction extends BaseClass {
         }
 
         return strColumnIndex;
+    }
+
+    public static void checksBrokenLinkOnPage()throws IOException
+    {
+        String url,responseMessage;
+        HttpURLConnection http;
+        int statusCode;
+        List<WebElement> elementList = driver.findElements(By.tagName("a"));
+        for (WebElement e: elementList)
+        {
+            try
+            {
+                url = e.getAttribute("href");
+                http = (HttpURLConnection) new URL(url).openConnection();
+                http.setConnectTimeout(3000);
+                http.connect();
+                statusCode = http.getResponseCode();
+                responseMessage = http.getResponseMessage();
+
+                Hashtable brokenLinksCollection = new Hashtable();
+                if (statusCode>=400)
+                {
+                    brokenLinksCollection.put(url, responseMessage);
+                }
+
+                Assert.assertTrue("Following Links are broken" +"/n"+ brokenLinksCollection,brokenLinksCollection.isEmpty() );
+            }
+            catch (MalformedURLException ex)
+            {
+                ex.printStackTrace();
+            }
+
+        }
     }
 }

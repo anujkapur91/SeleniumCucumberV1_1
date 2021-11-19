@@ -28,7 +28,7 @@ public class stepDefinationsUI extends BaseClass {
 
     public stepDefinationsUI() throws IOException
     {
-
+        driver = BaseClass.driver;
     }
 
     @AfterStep
@@ -78,7 +78,7 @@ public class stepDefinationsUI extends BaseClass {
     }
 
     @Then("User clicks on Elements link on DemoQA Page")
-    public void user_clicks_on_elements_link_on_demo_qa_page() throws IOException
+    public void user_clicks_on_elements_link_on_demo_qa_page() throws Throwable
     {
         pgElements = pgDemoQA.clickOnElements();
 //        TakeScreenShot(scenario);
@@ -91,7 +91,7 @@ public class stepDefinationsUI extends BaseClass {
 
     }
     @Then("Use clicks on ToolSQA Banner")
-    public void use_clicks_on_tool_sqa_banner() throws IOException
+    public void use_clicks_on_tool_sqa_banner() throws Throwable
     {
         pgToolSQA = pgElements.clickOnHomePageLink();
 //        TakeScreenShot(scenario);

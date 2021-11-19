@@ -1,54 +1,94 @@
 package SeleniumOrJavaTest;
 
-import Utilities.ScreenShotType;
-import Utilities.FWUtility;
+
+import com.google.gson.JsonObject;
+import io.restassured.RestAssured;
+import io.restassured.http.Method;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import org.apache.commons.io.FileUtils;
+import org.json.simple.JSONObject;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.*;
 
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.sql.*;
 import java.time.Duration;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 public class Test {
 
-    public static void main(String...args) throws InterruptedException, IOException {
+    public static void main(String...args) throws InterruptedException, IOException, ClassNotFoundException, SQLException {
         System.setProperty( "webdriver.edge.driver", "C:\\Users\\Anuj kapur\\Downloads\\edgedriver_win64\\msedgedriver.exe");
+        String strUrl = "";
+        EdgeOptions eo = new EdgeOptions();
+        eo.addArguments("--disable-notifications"); // disabeling notifications
+        WebDriver driver = new EdgeDriver(eo);
+        driver.get(strUrl);
+        //Entering the username and password
 
-        WebDriver driver = new EdgeDriver();
-        driver.get("https://the-internet.herokuapp.com/javascript_alerts");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10) );
-    //.implicitlyWait(10000, TimeUnit.MILLISECONDS);
-
-//        driver.findElement(By.xpath("//button[text()='Click for JS Alert']")).click();
-//        Thread.sleep(10000);
-//        driver.switchTo().alert().accept();
 //
-//        driver.findElement(By.xpath("//button[text()='Click for JS Confirm']")).click();
-//        Thread.sleep(10000);
-//        driver.switchTo().alert().accept();
-//
-//        driver.findElement(By.xpath("//button[text()='Click for JS Confirm']")).click();
-//        Thread.sleep(10000);
-//        driver.switchTo().alert().dismiss();
-        WebElement x = driver.findElement(By.xpath("//button[text()='Click for JS Prompt']"));
-        FWUtility.takeScreenshot(driver, x,"Alert", ScreenShotType.FULLPAGE );
 
-        driver.findElement(By.xpath("//button[text()='Click for JS Prompt']")).click();
-//        Thread.sleep(3000);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-                //WebDriverWait( driver,20);
-        wait.until(ExpectedConditions.alertIsPresent());
+        driver.findElement(By.xpath("")).sendKeys("admin");
+        driver.findElement(By.xpath("")).sendKeys("admin");
 
-        driver.switchTo().alert().sendKeys("Anuj Kapur AQA");
-//        Thread.sleep(3000);
-        driver.switchTo().alert().accept();
-//        Thread.sleep(3000);
-        FWUtility.takeScreenshotAt(driver, driver.findElement(By.id("result")),"Result", "C:\\Users\\Anuj kapur\\Desktop", ScreenShotType.ONLY_ELEMENT );
+        //Selecting the dropdown
+        Select slct = new Select(driver.findElement(By.xpath("")));
+        slct.selectByVisibleText("");
 
-        System.out.println("$$$$$$$$$$  " + driver.findElement(By.id("result")).getText() + " $$$$$$$$$$$$$$$");
+
         driver.quit();
+
+//-----------------------------------------------
+
+
+//        //Connection URL Syntax: "jdbc:mysql://ipaddress:portnumber/db_name"
+//        String dbUrl = "jdbc:mysql://localhost:3036/emp";
+//
+//        //Database Username
+//        String username = "root";
+//
+//        //Database Password
+//        String password = "guru99";
+//
+//        //Query to Execute
+//        String query = "select *  from employee;";
+//
+//        //Load mysql jdbc driver
+//        Class.forName("com.mysql.jdbc.Driver");
+//
+//        //Create Connection to DB
+//        Connection con = DriverManager.getConnection(dbUrl,username,password);
+//
+//        //Create Statement Object
+//        Statement stmt = con.createStatement();
+//
+//        // Execute the SQL Query. Store results in ResultSet
+//        ResultSet rs= stmt.executeQuery(query);
+//
+//        // While Loop to iterate through all data and print results
+//        while (rs.next()){
+//            String myName = rs.getString(1);
+//            String myAge = rs.getString(2);
+//            System. out.println(myName+"  "+myAge);
+//        }
+//        // closing DB Connection
+//        con.close();
 
 
     }
